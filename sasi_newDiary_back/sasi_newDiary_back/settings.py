@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'accounts',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,8 @@ STATICFILES_DIRS = [
 # 이미지 파일 업로드 위해 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = '/'
 
 
 # Default primary key field type
