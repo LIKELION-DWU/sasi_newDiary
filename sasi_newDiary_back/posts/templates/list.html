@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리스트 뷰</title>
+  </head>
+  <body>
+    <style>
+      #container {
+        position: relative;
+        width: 390px;
+        height: 844px;
+        background: #eaeaea;
+        margin: auto;
+      }
+      #whiteBox {
+        position: relative;
+        width: 313px;
+        height: 575px;
+        margin: auto;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: #fff;
+      }
+      #viewBar {
+        position: relative;
+        width: 194px;
+        height: 28px;
+        margin: auto;
+        margin-bottom: 20px;
+        flex-shrink: 0;
+        border-radius: 15px;
+        border: 3px solid #4c7343;
+        background: #fff;
+        box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.1);
+      }
+      #list {
+        position: relative;
+        width: 105px;
+        height: 28px;
+        margin-top: -27px;
+        margin-left: 92px;
+        flex-shrink: 0;
+        border-radius: 15px;
+        background: #4c7343;
+      }
+      #tileText {
+        position: relative;
+        display: flex;
+        width: 35px;
+        height: 27px;
+        top: 3px;
+        margin-left: 30px;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #4c7343;
+        font-size: 16px;
+        font-family: Noto Sans;
+        font-weight: 700;
+      }
+      #listText {
+        position: relative;
+        display: flex;
+        width: 81px;
+        height: 17px;
+        margin-left: 30px;
+        top: 3px;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #fff;
+        font-size: 16px;
+        font-family: Noto Sans;
+        font-weight: 700;
+      }
+      #date {
+        position: relative;
+        display: flex;
+        width: 143px;
+        height: 27px;
+        margin: auto;
+        top: 20px;
+        margin-bottom: 30px;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #000;
+        text-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        font-size: 16px;
+        font-family: Inter;
+        font-weight: 600;
+      }
+      #box {
+        position: relative;
+        display: flex;
+        width: 200px;
+        height: 38px;
+        margin-bottom: 10px;
+        flex-direction: column;
+        flex-shrink: 0;
+      }
+      #wdate {
+        position: relative;
+        color: #4c7343;
+        font-size: 15px;
+        font-family: Noto Sans;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        top: 15px;
+      }
+      #countComment,
+      #count {
+        position: relative;
+        float: left;
+        top: 1px;
+        left: 270px;
+        height: 20px;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #000;
+        text-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        font-size: 15px;
+        font-family: Inter;
+        font-weight: 600;
+      }
+      #line {
+        position: relative;
+        width: 250px;
+        height: 1px;
+        text-align: center;
+        background: #cdcdcd;
+      }
+      #underBox {
+        position: relative;
+        bottom: 30px;
+        width: 390px;
+        height: 192px;
+        flex-shrink: 0;
+        border-radius: 15px 15px 0px 0px;
+        background: #aad6a0;
+        box-shadow: -5px -5px 4px 0px rgba(0, 0, 0, 0.1);
+      }
+      #calendarBtn {
+        position: relative;
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        margin-left: 20px;
+      }
+      #writeBtn {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 60px;
+        background: #fffbd9;
+        margin: auto;
+        bottom: 20px;
+      }
+      #graphBtn {
+        position: relative;
+        width: 39px;
+        height: 37px;
+        flex-shrink: 0;
+        left: 300px;
+        bottom: 75px;
+      }
+      #storeBtn {
+        position: relative;
+        width: 34px;
+        height: 32px;
+        top: 20px;
+        left: 10px;
+        flex-shrink: 0;
+      }
+      #logoutBtn {
+        position: relative;
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        left: 330px;
+        bottom: 20px;
+      }
+    </style>
+    <div id="container">
+      <div id="date">2023년 XX월 XX일</div>
+      <div id="viewBar">
+        <div id="tileText">타일</div>
+        <div id="list"><div id="listText">리스트</div></div>
+      </div>
+      <div id="whiteBox">
+        <div id="box">
+          <div id="wdate">2023년 XX월 XX일 X요일</div>
+          <div>
+            <span id="countComment">(</span>
+            <span id="count"></span>
+            <span id="countComment">)</span>
+          </div>
+          <hr id="line" />
+        </div>
+        <!--글 작성 시 박스가 추가돼야 함-->
+      </div>
+      <div id="underBox">
+        <div id="calendarBtn">
+          <img src="./images/calendar.png" />
+        </div>
+        <div id="writeBtn">
+          <img src="./images/diary.png" />
+        </div>
+        <div id="graphBtn">
+          <img src="./images/graph.png" />
+        </div>
+        <div id="storeBtn">
+          <img src="./images/store.png" />
+        </div>
+        <div id="logoutBtn">
+          <img src="./images/logout.png" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      date = new Date();
+      year = date.getFullYear();
+      month = date.getMonth() + 1;
+      day = date.getDate();
+      document.getElementById("date").innerHTML =
+        year + "년 " + month + "월 " + day + "일";
+    </script>
+
+    <script src="./js/main.js"></script>
+    <script src="./js/count.js"></script>
+  </body>
+</html>

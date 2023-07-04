@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>회원가입</title>
   </head>
   <body>
     <style>
@@ -28,7 +28,7 @@
       #textBox {
         position: relative;
         display: flex;
-        width: 90px;
+        width: 120px;
         height: 31px;
         flex-direction: column;
         flex-shrink: 0;
@@ -67,49 +67,38 @@
         margin-left: 20px;
       }
 
-      #loginBtn {
+      #registerBtn {
         position: relative;
-        width: 241px;
-        height: 29px;
+        width: 93px;
+        height: 59px;
+        margin-left: 100px;
         flex-shrink: 0;
-        border-radius: 10px;
+        border-radius: 5px;
         background: #4c7343;
-        left: 25px;
       }
-      #loginText {
+      #regText {
         position: relative;
         color: #fff;
         font-size: 15px;
         font-family: Noto Sans;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 700;
         line-height: normal;
-        margin-top: 3px;
-      }
-      #search {
-        margin-left: 20px;
       }
     </style>
     <div id="container">
       <div id="greenBox">
-        <div id="textBox">로그인</div>
-
+        <div id="textBox">회원가입</div>
         <form id="form" method="POST">
           {% csrf_token %}
           <div id="idText">ID</div>
           <input type="text" id="id" name="id" />
           <div id="pwText">PW</div>
           <input type="password" id="passwd" name="passwd" />
-          <input id="loginBtn" type="submit" value="로그인 하기"/>
+          <input type="submit" id="registerBtn" value="등록"/>
         </form>
-        <br />
-        <br />
-        <a href="{% url 'accounts:signup' %}">
-          <span id="signup">회원 가입 하기</span>
-        </a>
-          <span id="search">아이디/비밀번호 찾기</span>
       </div>
     </div>
-    <script src=""></script>
+    <script src="{% static 'js/signup.js' %}"></script>
   </body>
 </html>
