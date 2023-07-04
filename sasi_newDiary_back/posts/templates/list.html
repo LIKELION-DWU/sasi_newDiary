@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -186,36 +187,40 @@
     <div id="container">
       <div id="date">2023년 XX월 XX일</div>
       <div id="viewBar">
-        <div id="tileText">타일</div>
+        <div id="tileText"><a href="{% url 'posts:main' %}">타일</a></div>
         <div id="list"><div id="listText">리스트</div></div>
       </div>
       <div id="whiteBox">
         <div id="box">
-          <div id="wdate">2023년 XX월 XX일 X요일</div>
+          {% for post in posts %}
+          <a href="{% url 'posts:post_detail' post.id %}"><div id="wdate">2023년 XX월 XX일 X요일</div> </a>
           <div>
             <span id="countComment">(</span>
             <span id="count"></span>
             <span id="countComment">)</span>
           </div>
           <hr id="line" />
+        {% endfor %}
         </div>
         <!--글 작성 시 박스가 추가돼야 함-->
       </div>
       <div id="underBox">
         <div id="calendarBtn">
-          <img src="./images/calendar.png" />
+          <img src="{% static 'img/calendar.png' %}" />
         </div>
         <div id="writeBtn">
-          <img src="./images/diary.png" />
+          <a href="{% url 'posts:post_create' %}">
+          <img src="{% static 'img/diary.png' %}" />
+          </a>
         </div>
         <div id="graphBtn">
-          <img src="./images/graph.png" />
+          <img src="{% static 'img/graph.png' %}" />
         </div>
         <div id="storeBtn">
-          <img src="./images/store.png" />
+          <img src="{% static 'img/store.png' %}" />
         </div>
         <div id="logoutBtn">
-          <img src="./images/logout.png" />
+          <img src="{% static 'img/logout.png' %}" />
         </div>
       </div>
     </div>
@@ -229,7 +234,7 @@
         year + "년 " + month + "월 " + day + "일";
     </script>
 
-    <script src="./js/main.js"></script>
-    <script src="./js/count.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/count.js' %}"></script>
   </body>
 </html>

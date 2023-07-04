@@ -187,10 +187,11 @@
       <div id="date">2023년 XX월 XX일</div>
       <div id="viewBar">
         <div id="tile"><div id="tileText">타일</div></div>
-        <div id="listText">리스트</div>
+        <div id="listText"><a href="{% url 'posts:post_list' %}">리스트</a></div>
       </div>
       <form id="form">
         <div id="box">
+          
           <div id="wdate">2023년 XX월 XX일 X요일</div>
           <hr id="line" />
           <div id="content">오늘 무슨 일이 있었냐면...</div>
@@ -204,7 +205,9 @@
           <img src="{% static 'img/calendar.png' %}" />
         </div>
         <div id="writeBtn">
+          <a href="{% url 'posts:post_create' %}">
           <img src="{% static 'img/diary.png' %}" />
+        </a>
         </div>
         <div id="graphBtn">
           <img src="{% static 'img/graph.png' %}" />
