@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -106,7 +107,7 @@
         flex-shrink: 0;
       }
     </style>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
     <div id="container">
       <div id="whiteBox">
@@ -123,16 +124,17 @@
 
       <div id="underBox">
         <div>
-          <button id="saveBtn">
+          <button id="saveBtn" type="submit">
             <div id="saveText">저장</div>
           </button>
         </div>
       </div>
       <div id="galleryBtn">
-        <img src="../images/gallery.png" />
+        <img src="{% static 'img/gallery.png' %}" />
       </div>
     </div>
     </form>
+   
     <script>
       date = new Date();
       var week = ["일", "월", "화", "수", "목", "금", "토"];
@@ -143,6 +145,6 @@
       document.getElementById("date").innerHTML =
         year + "년 " + month + "월 " + day + "일 " + dayOfWeek + "요일";
     </script>
-    <script src="../js/save.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

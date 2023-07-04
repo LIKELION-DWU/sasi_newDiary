@@ -24,3 +24,5 @@ def signup(request) :
             auth.login(request, new_user)
             return render(request, 'main.html')
     return render(request, 'signup.html')
+
+

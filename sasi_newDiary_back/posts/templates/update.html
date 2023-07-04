@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -238,15 +239,20 @@
     </style>
 
     <div id="container">
-      <img id="trashCan" src="../images/trashcan.png" />
+      <a href="{% url 'posts:post_delete' post.id %}">
+      <img id="trashCan" src="{% static 'img/trashcan.png' %}" /></a>
       <div id="updateBtn">
-        <img src="../images/Rectangle 16.png" />
-        <h1>수정</h1>
+        <a href="{% url 'posts:post_update' post.id %}">
+        <img src="{% static 'img/Rectangle 16.png' %}"/>
+        <h1>수정</h1></a>
       </div>
       <div id="whiteBox">
         <div id="date">2023년 XX월 XX일 X요일</div>
         <hr id="line" />
-        <div id="content">오늘 무슨 일이 있었냐면...</div>
+        {% if post.photo %}
+        <img src = "{{ post.photo.url }}" alt="" height="200">
+        {% endif %}
+        <div id="content">{{post.content}}</div>
       </div>
 
       <span id="countComment">댓글(</span>
@@ -262,7 +268,7 @@
         />
         <div>
           <button id="commAddBtn">
-            <img src="../images/Send.png" />
+            <img src="{% static 'img/images/Send.png' %}" />
           </button>
         </div>
       </div>
@@ -270,38 +276,40 @@
       <!--예시 댓글.. 추가 되어야 함-->
       <div id="commentBox">
         <div id="profile">
-          <img src="../images/profile.png" />
+          <img src="{% static 'img/profile.png'%}" />
         </div>
         <div id="pname">미영</div>
         <div id="commContent">왜 글을 쓰다마세요..</div>
       </div>
       <div id="commentBox">
         <div id="profile">
-          <img src="../images/profile.png" />
+          <img src="{% static 'img/profile.png'%}" />
         </div>
         <div id="pname">미영</div>
         <div id="commContent">더 써주세요..</div>
       </div>
 
       <div id="underBox">
-        <div id="calendarBtn"><img src="../images/calendar.png" /></div>
+        <div id="calendarBtn"><img src="{% static 'img/calendar.png'%}" /></div>
         <div id="writeBtn">
-          <img src="../images/diary.png" />
+          <a href="{% url 'posts:post_create' %}">
+          <img src="{% static 'img/diary.png' %}" />
+          </a>
         </div>
         <div id="graphBtn">
-          <img src="../images/graph.png" />
+          <img src="{% static 'img/graph.png' %}" />
         </div>
         <div id="storeBtn">
-          <img src="../images/store.png" />
+          <img src="{% static 'img/store.png' %}" />
         </div>
         <div id="settingBtn">
-          <img src="../images/sett.png" />
+          <img src="{% static 'img/sett.png'%}" />
         </div>
       </div>
     </div>
-    <script src="../js/count.js"></script>
-    <script src="../js/write.js"></script>
-    <script src="../js/commadd.js"></script>
-    <script src="../js/update.js"></script>
+    <script src="{% static 'js/count.js' %}"></script>
+    <script src="{% static 'js/write.js' %}"></script>
+    <script src="{% static 'js/commadd.js' %}"></script>
+    <script src="{% static 'js/update.js' %}"></script>
   </body>
 </html>
