@@ -193,15 +193,13 @@
       <div id="whiteBox">
         <div id="box">
           {% for post in posts %}
-          <a href="{% url 'posts:post_detail' post.id %}">
-            <div id="wdate">{{ post.timestamp|date:"Y년 m월 d일 D" }}</div>
-            <div>
-              <span id="countComment">(</span>
-              <span id="count">{{ post.comment_count }}</span>
-              <span id="countComment">)</span>
-            </div>
-          </a>
-        <hr id="line" /> 
+          <a href="{% url 'posts:post_detail' post.id %}"><div id="wdate">{{post.timestamp|date:"Y년 m월 d일 D"}}</div> </a>
+          <div>
+            <span id="countComment">(</span>
+            <span id="count">{{ post.comment_count }}</span>
+            <span id="countComment">)</span>
+          </div>
+          <hr id="line" />
         {% endfor %}
         </div>
         <!--글 작성 시 박스가 추가돼야 함-->

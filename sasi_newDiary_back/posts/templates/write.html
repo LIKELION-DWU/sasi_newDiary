@@ -117,13 +117,12 @@
         <div id="date">2023년 XX월 XX일 X요일</div>
         <hr id="line" />
         <div id="photoContent">사진</div>
-        {{ form.as_p }}
-        <!-- <input
-          type="text"
-          id="content"
-          placeholder="오늘 무슨 일이 있었냐면..."
-        />
-      </div> -->
+        
+        
+        <input class="form-control" id="content" id="{{ form.content.id_for_label }}"
+         name="{{ form.content.html_name }}" type="text"  placeholder="오늘 무슨 일이 있었냐면..." />
+        
+      </div> 
 
       <div id="underBox">
         <div>
@@ -133,7 +132,10 @@
         </div>
       </div>
       <div id="galleryBtn">
-        <img src="{% static 'img/gallery.png' %}" />
+
+        {{form.photo}}
+        <img type src="{% static 'img/gallery.png' %}">
+      
       </div>
     </div>
     </form>

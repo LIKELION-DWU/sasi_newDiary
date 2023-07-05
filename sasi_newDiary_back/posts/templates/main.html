@@ -198,7 +198,7 @@
         {% for post in posts %}
         <a href="{% url 'posts:post_detail' post.id %}">
           <div id="box">
-            <div id="wdate">{{ post.timestamp|date:"Y년 m월 d일 D" }}</div>
+            <div id="wdate">{{post.timestamp|date:"Y년 m월 d일 D"}}</div>
             <hr id="line" />
             <div id="content">{{ post.content }}</div>
           </div>

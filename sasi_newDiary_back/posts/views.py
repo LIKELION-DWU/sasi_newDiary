@@ -5,7 +5,7 @@ from .forms import PostModelForm, CommentModelForm
 # Create your views here.
 def post_main(request) :
     # posts 받아서 render하기 
-    posts = Post.objects.all().order_by('timestamp')
+    posts = Post.objects.all().order_by('-timestamp')
     return render(request, 'main.html',  {'posts':posts})
 
 #post_create 
@@ -22,7 +22,7 @@ def post_create(request):
 
 #post_list /게시글 목록
 def post_list(request):
-    posts = Post.objects.all().order_by('timestamp')
+    posts = Post.objects.all().order_by('-timestamp')
     return render(request, 'list.html', {'posts':posts})
 
 def post_detail(request, id) :

@@ -251,14 +251,18 @@
         <h1>수정</h1></a>
       </div>
       <div id="whiteBox">
-        <div id="date"></div>
+
+        <div id="date">{{post.timestamp|date:"Y년 m월 d일 D"}}</div>
+
+  
         <hr id="line" />
         {% if post.photo %}
         <img src = "{{ post.photo.url }}" alt="" height="200">
         {% endif %}
+        
         <div id="content">{{ post.content }}</div>
-      </div>
 
+      </div>
       <span id="countComment">댓글(</span>
       <span id="countComment">{{ post.comment_count }}</span>
       <span id="countComment">)</span>
@@ -278,39 +282,39 @@
         </div>
       </div>
     </form>
-
-      <!-- 댓글 반복 출력 -->
-      {% for comment in post.comment_set.all %}
-      <div id="commentBox">
-        <div id="profile">
-          <img src="{% static 'img/profile.png'%}" />
-        </div>
-        <div id="pname">{{ comment.author }}</div>
-        <div id="commContent">{{ comment }}</div>
+    
+    <!-- 댓글 반복 출력 -->
+    {% for comment in post.comment_set.all %}
+    <div id="commentBox">
+      <div id="profile">
+        <img src="{% static 'img/profile.png'%}" />
       </div>
-      {% endfor %}
-
-      <div id="underBox">
-        <div id="calendarBtn"><img src="{% static 'img/calendar.png'%}" /></div>
-        <div id="writeBtn">
-          <a href="{% url 'posts:post_create' %}">
-          <img src="{% static 'img/diary.png' %}" />
-          </a>
-        </div>
-        <div id="graphBtn">
-          <img src="{% static 'img/graph.png' %}" />
-        </div>
-        <div id="storeBtn">
-          <img src="{% static 'img/store.png' %}" />
-        </div>
-        <div id="settingBtn">
-          <img src="{% static 'img/sett.png'%}" />
-        </div>
-      </div>
+      <div id="pname">{{ comment.author }}</div>
+      <div id="commContent">{{ comment }}</div>
     </div>
-    <script src="{% static 'js/count.js' %}"></script>
-    <script src="{% static 'js/write.js' %}"></script>
-    <script src="{% static 'js/commadd.js' %}"></script>
-    <script src="{% static 'js/update.js' %}"></script>
-  </body>
+    {% endfor %}
+
+<div id="underBox">
+  <div id="calendarBtn"><img src="{% static 'img/calendar.png'%}" /></div>
+  <div id="writeBtn">
+    <a href="{% url 'posts:post_create' %}">
+    <img src="{% static 'img/diary.png' %}" />
+    </a>
+  </div>
+  <div id="graphBtn">
+    <img src="{% static 'img/graph.png' %}" />
+  </div>
+  <div id="storeBtn">
+    <img src="{% static 'img/store.png' %}" />
+  </div>
+  <div id="settingBtn">
+    <img src="{% static 'img/sett.png'%}" />
+  </div>
+</div>
+</div>
+<script src="{% static 'js/count.js' %}"></script>
+<script src="{% static 'js/write.js' %}"></script>
+<script src="{% static 'js/commadd.js' %}"></script>
+<script src="{% static 'js/update.js' %}"></script>
+</body>
 </html>
