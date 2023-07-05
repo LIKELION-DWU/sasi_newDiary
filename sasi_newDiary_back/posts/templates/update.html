@@ -255,7 +255,9 @@
       <span id="countComment">)</span>
 
       <div>
-        <form method="POST" action="">
+        <form method="POST" action="{% url 'posts:create_comment' post.id %}">
+          {% csrf_token %}
+          {{ comment_form }}
           <input
           type="text"
           name="comment"
@@ -263,25 +265,32 @@
           placeholder="댓글 입력하세요..."
           />
           <div>
-            <input  id="commAddBtn" type="image" src="{% static 'img/Send.png' %}" />
+            <input id="commAddBtn" type="image" src="{% static 'img/Send.png' %}" />
           </div>
         </form>
+
       </div>
 
-      <!--예시 댓글.. 추가 되어야 함-->
+      <!--예시 댓글 추가 -->
+
+      {% for comment in post.comment_set.all %}
       <div id="commentBox">
         <div id="profile">
           <img src="{% static 'img/profile.png' %}" />
+
         </div>
-        <div id="pname">미영</div>
-        <div id="commContent">왜 글을 쓰다마세요..</div>
+        <div id="pname">{{ comment.author }}</div>
+        <div id="commContent">{{ comment }}</div>
       </div>
       <div id="commentBox">
         <div id="profile">
           <img src="{% static 'img/profile.png' %}" />
+
         </div>
-        <div id="pname">미영</div>
+        <!--         <div id="pname">미영</div>
         <div id="commContent">더 써주세요..</div>
+        -->
+
       </div>
 
       <div id="underBox">
