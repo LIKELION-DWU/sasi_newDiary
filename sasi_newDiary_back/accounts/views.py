@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
-
+from posts.models import Post
 # Create your views here.
 
 def login(request) :
@@ -11,7 +11,9 @@ def login(request) :
         user = auth.authenticate(request, username=id, password=passwd)
         if user is not None : 
             auth.login(request, user)
-            return render(request, 'main.html')
+            posts = Post.objects.all().order_by('timestamp')
+            if posts is not None :
+                return render(request, 'main.html', {'posts':posts})
     return render(request, 'login.html')
 
 def logout(request):

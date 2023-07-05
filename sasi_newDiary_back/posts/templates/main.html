@@ -181,25 +181,32 @@
         left: 330px;
         bottom: 20px;
       }
+      a {
+        text-decoration-line:none;
+      }
     </style>
     <div id="container">
       <!-- 박스 추가 예시 -->
+      <!-- 오늘 날짜 반영 -->
       <div id="date">2023년 XX월 XX일</div>
       <div id="viewBar">
         <div id="tile"><div id="tileText">타일</div></div>
         <div id="listText"><a href="{% url 'posts:post_list' %}">리스트</a></div>
       </div>
+
       <form id="form">
-        <div id="box">
-          
-          <div id="wdate">2023년 XX월 XX일 X요일</div>
-          <hr id="line" />
-          <div id="content">오늘 무슨 일이 있었냐면...</div>
-        </div>
+        {% for post in posts %}
+        <a href="{% url 'posts:post_detail' post.id %}">
+          <div id="box">
+            <div id="wdate">{{ post.timestamp|date:"Y년 m월 d일 D" }}</div>
+            <hr id="line" />
+            <div id="content">{{ post.content }}</div>
+          </div>
+      </a>
+        {% endfor %}
       </form>
       <!--글 작성하면 차례대로 박스 추가되어야-->
-      <div id="box"></div>
-
+      
       <div id="underBox">
         <div id="calendarBtn">
           <img src="{% static 'img/calendar.png' %}" />
