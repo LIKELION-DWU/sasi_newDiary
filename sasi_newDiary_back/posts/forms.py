@@ -6,7 +6,20 @@ class PostModelForm(forms.ModelForm):
 		model=Post
 		fields= ['photo', 'content',]
 
+
+		labels ={
+                  'photo':'사진',
+                  'content':'내용',
+		}       
+	
+
 class CommentModelForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['comment']
+        fields = ['comment',]
+        
+        labels={
+              'comment':'댓글',
+		}
+        
+		

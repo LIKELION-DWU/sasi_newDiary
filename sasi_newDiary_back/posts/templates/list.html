@@ -193,7 +193,7 @@
       <div id="whiteBox">
         <div id="box">
           {% for post in posts %}
-          <a href="{% url 'posts:post_detail' post.id %}"><div id="wdate">2023년 XX월 XX일 X요일</div> </a>
+          <a href="{% url 'posts:post_detail' post.id %}"><div id="wdate">{{post.timestamp | date:"Y년 m월 d일 D요일" }}</div> </a>
           <div>
             <span id="countComment">(</span>
             <span id="count"></span>

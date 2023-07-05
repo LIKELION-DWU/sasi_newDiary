@@ -247,34 +247,46 @@
         <h1>수정</h1></a>
       </div>
       <div id="whiteBox">
-        <div id="date">2023년 XX월 XX일 X요일</div>
+        <div id="date">{{post.timestamp}}</div>
         <hr id="line" />
         {% if post.photo %}
         <img src = "{{ post.photo.url }}" alt="" height="200">
         {% endif %}
         <div id="content">{{post.content}}</div>
+        
       </div>
 
+      <!--댓글-->
       <span id="countComment">댓글(</span>
       <span id="count"></span>
       <span id="countComment">)</span>
-
-      <div>
-        <form method="POST" action="{% url 'posts:create_comment' post.id %}">
-          {% csrf_token %}
-          {{ comment_form }}
-        <input
-          type="text"
-          name="comment"
-          id="commAddBox"
-          placeholder="댓글 입력하세요..."
-        />
-        <div>
-          <input id="commAddBtn" type="image" src="{% static 'img/Send.png' %}" />
-        </div>
+      
+      <form method="POST" action="{% url 'posts:create_comment' post.id %}">
+      {% csrf_token %}
+      <div>  
+          <input name="comment" class="form-control" id="commAddBox" id="{{ form.comment.id_for_label }}"
+         name="{{ form.comment.html_name }}" type="text"  placeholder="댓글 입력하세요..." />
+          <div>
+            <button id="commAddBtn" type="submit">
+              <img src="{% static 'img/Send.png'%}" />
+            </button>
+          </div>
       </div>
-    </form>
+        </form>
+      
       <!--예시 댓글.. 추가 되어야 함-->
+      {% for comment in post.comment_set.all %}
+      <p>{{ comment }}</p>
+      <hr>
+      {% endfor %}
+      <div id="commentBox">
+        <div id="profile">
+          <img src="{% static 'img/profile.png'%}" />
+        </div>
+        <div id="pname">미영</div>
+        <div id="commContent">왜 글을 쓰다마세요..</div>
+      </div>
+
       <div id="commentBox">
         <div id="profile">
           <img src="{% static 'img/profile.png'%}" />

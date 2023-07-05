@@ -21,7 +21,7 @@ def post_create(request):
 
 #post_list /게시글 목록
 def post_list(request):
-    posts = Post.objects.all().order_by('content')
+    posts = Post.objects.all().order_by('-timestamp')
     return render(request, 'list.html', {'posts':posts})
 
 def post_detail(request, id) :
@@ -59,11 +59,11 @@ def post_delete(request, id):
 
 #댓글 생성 
 def create_comment(request, id) : 
-    filled_form = CommentModelForm(request.POST['comment'])
+    filled_form = CommentModelForm(request.POST)
     if filled_form.is_valid() :
         finished_form = filled_form.save(commit=False)
         finished_form.article = get_object_or_404(Post, pk=id)
         finished_form.author = request.user
         finished_form.save()
 
-    return redirect('post_detail', id)
+    return redirect('posts:post_detail', id)
