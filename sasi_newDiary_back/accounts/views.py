@@ -14,6 +14,10 @@ def login(request) :
             return render(request, 'main.html')
     return render(request, 'login.html')
 
+def logout(request) :
+    auth.logout(request)
+    return render(request, 'login.html')
+
 def signup(request) :
     if request.method == 'POST' :
         id = request.POST['id']

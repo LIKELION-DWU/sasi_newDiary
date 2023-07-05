@@ -1,0 +1,310 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>수정 삭제 댓글</title>
+  </head>
+  <body>
+    <style>
+      #container {
+        position: relative;
+        width: 390px;
+        height: 1089px;
+        background: #eaeaea;
+        margin: auto;
+        overflow: auto;
+        overflow-x: hidden;
+      }
+      #trashCan {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        top: 2ch;
+        left: 30px;
+        flex-shrink: 0;
+      }
+      #updateBtn {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 30px;
+        top: 15px;
+        left: 20px;
+        flex-shrink: 0;
+      }
+      h1 {
+        position: absolute;
+        display: flex;
+        width: 56px;
+        height: 28px;
+        top: -4px;
+        left: 10px;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #000;
+        text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        font-size: 16px;
+        font-family: Noto Sans;
+      }
+      #whiteBox {
+        position: relative;
+        width: 318px;
+        height: 542px;
+        margin: auto;
+        margin-bottom: 20px;
+        top: 30px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      }
+      #line {
+        width: 80%;
+      }
+      #date {
+        position: relative;
+        display: flex;
+        width: 263px;
+        height: 50px;
+        top: 20px;
+        margin: auto;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #4c7343;
+        text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        font-size: 20px;
+        font-family: Noto Sans;
+        font-weight: 700;
+      }
+      #content {
+        position: relative;
+        display: flex;
+        width: 260px;
+        height: 50px;
+        margin: auto;
+        text-align: left;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #000;
+        text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        font-size: 16px;
+        font-family: Noto Sans;
+      }
+
+      #countComment,
+      #count {
+        position: relative;
+        display: flex;
+        float: left;
+        top: 35px;
+        left: 33px;
+        height: 20px;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #000;
+        text-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        font-size: 15px;
+        font-family: Inter;
+        font-weight: 600;
+      }
+      #commentBox {
+        position: relative;
+        width: 318px;
+        height: 79px;
+        flex-shrink: 0;
+        margin: auto;
+        top: 30px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.25);
+      }
+      #profile {
+        position: relative;
+        width: 38px;
+        height: 38px;
+        margin-left: 5px;
+        top: 5px;
+        flex-shrink: 0;
+      }
+      #pname {
+        position: relative;
+        display: flex;
+        width: 53px;
+        height: 25px;
+        margin-left: 50px;
+        margin-top: -20px;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #4c7343;
+        font-size: 16px;
+        font-family: Noto Sans;
+        font-weight: 700;
+      }
+      #commContent {
+        position: relative;
+        display: flex;
+        width: 192px;
+        height: 50px;
+        margin-left: 50px;
+        flex-direction: column;
+        flex-shrink: 0;
+        color: #000;
+        font-size: 13px;
+        font-family: Noto Sans;
+      }
+      #underBox {
+        position: relative;
+        bottom: -90px;
+        width: 390px;
+        height: 192px;
+        flex-shrink: 0;
+        border-radius: 15px 15px 0px 0px;
+        background: #aad6a0;
+        box-shadow: -5px -5px 4px 0px rgba(0, 0, 0, 0.1);
+      }
+      #calendarBtn {
+        position: relative;
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        margin-left: 20px;
+      }
+      #writeBtn {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 60px;
+        background: #fffbd9;
+        margin: auto;
+        bottom: 20px;
+      }
+      #graphBtn {
+        position: relative;
+        width: 39px;
+        height: 37px;
+        flex-shrink: 0;
+        left: 300px;
+        bottom: 75px;
+      }
+      #storeBtn {
+        position: relative;
+        width: 34px;
+        height: 32px;
+        top: 20px;
+        left: 10px;
+        flex-shrink: 0;
+      }
+      #settingBtn {
+        position: relative;
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        left: 330px;
+        bottom: 20px;
+      }
+      #commAddBox {
+        position: relative;
+        margin: auto;
+        left: 25px;
+        width: 318px;
+        height: 79px;
+        flex-shrink: 0;
+        margin-top: 70px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.25);
+      }
+      #commAddBtn {
+        position: relative;
+        top: -40px;
+        left: 310px;
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: #aad6a0;
+      }
+      #sendImg {
+        position: relative;
+        width: 13.5px;
+        height: 13.5px;
+        flex-shrink: 0;
+      }
+    </style>
+
+    <div id="container">
+      <img id="trashCan" src="{% static 'img/trashcan.png' %}" />
+      <div id="updateBtn">
+        <img src="{% static 'img/Rectangle 16.png'%}" />
+        <h1>수정</h1>
+      </div>
+      <div id="whiteBox">
+        <div id="date">2023년 XX월 XX일 X요일</div>
+        <hr id="line" />
+        <div id="content">오늘 무슨 일이 있었냐면...</div>
+      </div>
+
+      <span id="countComment">댓글(</span>
+      <span id="count"></span>
+      <span id="countComment">)</span>
+
+      <div>
+        <form method="POST" action="">
+          <input
+          type="text"
+          name="comment"
+          id="commAddBox"
+          placeholder="댓글 입력하세요..."
+          />
+          <div>
+            <input  id="commAddBtn" type="image" src="{% static 'img/Send.png' %}" />
+          </div>
+        </form>
+      </div>
+
+      <!--예시 댓글.. 추가 되어야 함-->
+      <div id="commentBox">
+        <div id="profile">
+          <img src="{% static 'img/profile.png' %}" />
+        </div>
+        <div id="pname">미영</div>
+        <div id="commContent">왜 글을 쓰다마세요..</div>
+      </div>
+      <div id="commentBox">
+        <div id="profile">
+          <img src="{% static 'img/profile.png' %}" />
+        </div>
+        <div id="pname">미영</div>
+        <div id="commContent">더 써주세요..</div>
+      </div>
+
+      <div id="underBox">
+        <div id="calendarBtn"><img src="{% static 'img/calendar.png' %}" /></div>
+        <div id="writeBtn">
+          <img src="{% static 'img/diary.png' %}" />
+        </div>
+        <div id="graphBtn">
+          <img src="{% static 'img/graph.png' %}" />
+        </div>
+        <div id="storeBtn">
+          <img src="{% static 'img/store.png' %}" />
+        </div>
+        <div id="settingBtn">
+          <a href="{% url 'accounts:logout' %}">
+            <img src="{% static 'img/logout.png' %}" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/count.js' %}"></script>
+    <script src="{% static 'js/write.js' %}"></script>
+    <script src="{% static 'js/commadd.js' %}"></script>
+    <script src="{% static 'js/update.js' %}"></script>
+  </body>
+</html>
