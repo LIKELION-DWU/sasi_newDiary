@@ -229,12 +229,16 @@
         flex-shrink: 0;
         border-radius: 10px;
         background: #aad6a0;
+        background-image: url("{% static 'img/Send.png' %}");
       }
       #sendImg {
         position: relative;
         width: 13.5px;
         height: 13.5px;
         flex-shrink: 0;
+      }
+      a {
+        text-decoration-line:none;
       }
     </style>
 
@@ -247,22 +251,22 @@
         <h1>수정</h1></a>
       </div>
       <div id="whiteBox">
-        <div id="date">2023년 XX월 XX일 X요일</div>
+        <div id="date"></div>
         <hr id="line" />
         {% if post.photo %}
         <img src = "{{ post.photo.url }}" alt="" height="200">
         {% endif %}
-        <div id="content">{{post.content}}</div>
+        <div id="content">{{ post.content }}</div>
       </div>
 
       <span id="countComment">댓글(</span>
-      <span id="count"></span>
+      <span id="countComment">{{ post.comment_count }}</span>
       <span id="countComment">)</span>
 
       <div>
         <form method="POST" action="{% url 'posts:create_comment' post.id %}">
           {% csrf_token %}
-          {{ comment_form }}
+          
         <input
           type="text"
           name="comment"
@@ -270,25 +274,21 @@
           placeholder="댓글 입력하세요..."
         />
         <div>
-          <input id="commAddBtn" type="image" src="{% static 'img/Send.png' %}" />
+          <input id="commAddBtn" type="submit" value=""/>
         </div>
       </div>
     </form>
-      <!--예시 댓글.. 추가 되어야 함-->
+
+      <!-- 댓글 반복 출력 -->
+      {% for comment in post.comment_set.all %}
       <div id="commentBox">
         <div id="profile">
           <img src="{% static 'img/profile.png'%}" />
         </div>
-        <div id="pname">미영</div>
-        <div id="commContent">왜 글을 쓰다마세요..</div>
+        <div id="pname">{{ comment.author }}</div>
+        <div id="commContent">{{ comment }}</div>
       </div>
-      <div id="commentBox">
-        <div id="profile">
-          <img src="{% static 'img/profile.png'%}" />
-        </div>
-        <div id="pname">미영</div>
-        <div id="commContent">더 써주세요..</div>
-      </div>
+      {% endfor %}
 
       <div id="underBox">
         <div id="calendarBtn"><img src="{% static 'img/calendar.png'%}" /></div>
