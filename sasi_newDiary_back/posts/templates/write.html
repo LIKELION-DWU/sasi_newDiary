@@ -107,14 +107,13 @@
         flex-shrink: 0;
       }
     </style>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
     <div id="container">
       <div id="whiteBox">
         <div id="date">2023년 XX월 XX일 X요일</div>
         <hr id="line" />
         <div id="photoContent">사진</div>
-        <form method='POST' action="{% url 'posts:post_create' %}">
         {{ form.as_p }}
         <!-- <input
           type="text"
@@ -123,11 +122,11 @@
         />
       </div> -->
 
-        <div id="underBox">
-          <div>
-            <input id="saveBtn" type="submit" value="저장"/>
-        </form>
-          
+      <div id="underBox">
+        <div>
+          <button id="saveBtn" type="submit">
+            <div id="saveText">저장</div>
+          </button>
         </div>
       </div>
       <div id="galleryBtn">
@@ -135,6 +134,7 @@
       </div>
     </div>
     </form>
+   
     <script>
       date = new Date();
       var week = ["일", "월", "화", "수", "목", "금", "토"];
@@ -145,6 +145,6 @@
       document.getElementById("date").innerHTML =
         year + "년 " + month + "월 " + day + "일 " + dayOfWeek + "요일";
     </script>
-    <script src="{% static 'js/save.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>
