@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -238,9 +239,9 @@
     </style>
 
     <div id="container">
-      <img id="trashCan" src="../images/trashcan.png" />
+      <img id="trashCan" src="{% static 'img/trashcan.png' %}" />
       <div id="updateBtn">
-        <img src="../images/Rectangle 16.png" />
+        <img src="{% static 'img/Rectangle 16.png'%}" />
         <h1>수정</h1>
       </div>
       <div id="whiteBox">
@@ -254,54 +255,65 @@
       <span id="countComment">)</span>
 
       <div>
-        <input
+        <form method="POST" action="{% url 'posts:create_comment' post.id %}">
+          {% csrf_token %}
+          {{ comment_form }}
+          <input
           type="text"
           name="comment"
           id="commAddBox"
           placeholder="댓글 입력하세요..."
-        />
-        <div>
-          <button id="commAddBtn">
-            <img src="../images/Send.png" />
-          </button>
-        </div>
+          />
+          <div>
+            <input id="commAddBtn" type="image" src="{% static 'img/Send.png' %}" />
+          </div>
+        </form>
+
       </div>
 
-      <!--예시 댓글.. 추가 되어야 함-->
+      <!--예시 댓글 추가 -->
+
+      {% for comment in post.comment_set.all %}
       <div id="commentBox">
         <div id="profile">
-          <img src="../images/profile.png" />
+          <img src="{% static 'img/profile.png' %}" />
+
         </div>
-        <div id="pname">미영</div>
-        <div id="commContent">왜 글을 쓰다마세요..</div>
+        <div id="pname">{{ comment.author }}</div>
+        <div id="commContent">{{ comment }}</div>
       </div>
       <div id="commentBox">
         <div id="profile">
-          <img src="../images/profile.png" />
+          <img src="{% static 'img/profile.png' %}" />
+
         </div>
-        <div id="pname">미영</div>
+        <!--         <div id="pname">미영</div>
         <div id="commContent">더 써주세요..</div>
+        -->
+
       </div>
 
       <div id="underBox">
-        <div id="calendarBtn"><img src="../images/calendar.png" /></div>
+        <div id="calendarBtn"><img src="{% static 'img/calendar.png' %}" /></div>
         <div id="writeBtn">
-          <img src="../images/diary.png" />
+          <img src="{% static 'img/diary.png' %}" />
         </div>
         <div id="graphBtn">
-          <img src="../images/graph.png" />
+          <img src="{% static 'img/graph.png' %}" />
         </div>
         <div id="storeBtn">
-          <img src="../images/store.png" />
+          <img src="{% static 'img/store.png' %}" />
         </div>
         <div id="settingBtn">
-          <img src="../images/sett.png" />
+          <a href="{% url 'accounts:logout' %}">
+            <img src="{% static 'img/logout.png' %}" />
+          </a>
         </div>
       </div>
     </div>
-    <script src="../js/count.js"></script>
-    <script src="../js/write.js"></script>
-    <script src="../js/commadd.js"></script>
-    <script src="../js/update.js"></script>
+    <script src="{% static 'js/count.js' %}"></script>
+    <script src="{% static 'js/write.js' %}"></script>
+    <script src="{% static 'js/commadd.js' %}"></script>
+    <script src="{% static 'js/update.js' %}"></script>
   </body>
 </html>
