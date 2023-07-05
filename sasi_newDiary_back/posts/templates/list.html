@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -193,10 +193,10 @@
       <div id="whiteBox">
         <div id="box">
           {% for post in posts %}
-          <a href="{% url 'posts:post_detail' post.id %}"><div id="wdate">{{post.timestamp | date:"Y년 m월 d일 D요일" }}</div> </a>
+          <a href="{% url 'posts:post_detail' post.id %}"><div id="wdate">{{post.timestamp|date:"Y년 m월 d일 D"}}</div> </a>
           <div>
             <span id="countComment">(</span>
-            <span id="count"></span>
+            <span id="count">{{ post.comment_count }}</span>
             <span id="countComment">)</span>
           </div>
           <hr id="line" />

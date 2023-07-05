@@ -106,6 +106,9 @@
         left: 10px;
         flex-shrink: 0;
       }
+      a {
+        text-decoration-line:none;
+      }
     </style>
     <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
@@ -115,7 +118,7 @@
         <hr id="line" />
         <div id="photoContent">사진</div>
         
-        <label for=" {{ form.content.id_for_label }}"> </label>
+        
         <input class="form-control" id="content" id="{{ form.content.id_for_label }}"
          name="{{ form.content.html_name }}" type="text"  placeholder="오늘 무슨 일이 있었냐면..." />
         
@@ -130,8 +133,9 @@
       </div>
       <div id="galleryBtn">
 
-        <input type="file" class="form-control" id="{{form.photo}}"/>
+        {{form.photo}}
         <img type src="{% static 'img/gallery.png' %}">
+      
       </div>
     </div>
     </form>

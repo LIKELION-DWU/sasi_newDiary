@@ -5,7 +5,8 @@ from .forms import PostModelForm, CommentModelForm
 # Create your views here.
 def post_main(request) :
     # posts 받아서 render하기 
-    return render(request, 'main.html')
+    posts = Post.objects.all().order_by('-timestamp')
+    return render(request, 'main.html',  {'posts':posts})
 
 #post_create 
 def post_create(request):
@@ -31,7 +32,6 @@ def post_detail(request, id) :
         return redirect('posts') 
     
     comment_form = CommentModelForm()
-    
     context = {
         'post' : post,
         'comment_form' : comment_form
@@ -61,9 +61,14 @@ def post_delete(request, id):
 def create_comment(request, id) : 
     filled_form = CommentModelForm(request.POST)
     if filled_form.is_valid() :
+        post = Post.objects.get(pk=id)
         finished_form = filled_form.save(commit=False)
+        finished_form.comment
         finished_form.article = get_object_or_404(Post, pk=id)
         finished_form.author = request.user
         finished_form.save()
-
+        post.comment_count = post.comment_count + 1
+        print(' 댓글 개수는 ----------------------------')
+        print(post.comment_count)
+        post.save()
     return redirect('posts:post_detail', id)

@@ -1,6 +1,6 @@
 // 작성 당시 날짜가 보이게
 let date = document.getElementById("date");
-date.innerHTML = "2077년 XX월 XX일 X요일"; // 임시
+
 
 // 이전에 작성 글이 뜨게..
 
