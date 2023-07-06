@@ -10,9 +10,9 @@ class PostModelForm(forms.ModelForm):
                   'photo':'사진',
                   'content':'내용',
 		    } 
-            # widget={
-            #       'content':forms.TextInput({'class':'form-control'},{'placeholder':'오늘 무슨 일이 있었냐면...'})
-            # }
+            widget={
+                  'content':forms.TextInput()
+            }
        
               
        

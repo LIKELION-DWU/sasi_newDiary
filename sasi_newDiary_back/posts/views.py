@@ -48,6 +48,8 @@ def post_update(request, id):
             return redirect('posts:main')
     else:
         form = PostModelForm(instance=post)
+       
+
         return render(request, 'write.html', {'form':form, 'id':id})
     
     
